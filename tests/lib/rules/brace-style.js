@@ -16,6 +16,7 @@ var eslintTester = require("../../../lib/tests/eslintTester");
 eslintTester.addRuleTest("brace-style", {
     valid: [
         "function foo () { return; }",
+        "function foo (bar,\n baz,\n qux) { return; }",
         "if (foo) { \n bar(); }",
         "while (foo) { \n bar(); }",
         "for (;;) { \n bar(); }",
@@ -23,7 +24,8 @@ eslintTester.addRuleTest("brace-style", {
         "switch (foo) { \n case \"bar\": break; }",
         "try { \n bar();\n } catch (e) {\n baz(); \n }",
         "do { \n bar();\n } while (true)",
-        "for (foo in bar) { \n baz(); \n }"
+        "for (foo in bar) { \n baz(); \n }",
+        "if (thing &&\n thingTwo &&\n thingThree) { \n }"
     ],
     invalid: [
         { code: "function foo() \n { \n return; }", errors: [{ message: "Opening curly brace does not appear on the same line as the block identifier.", type: "FunctionDeclaration"}] },
